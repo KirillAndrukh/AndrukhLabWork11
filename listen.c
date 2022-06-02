@@ -33,7 +33,8 @@ int main(int argc, char **argv) {
         while(1==1) {
                 PQconsumeInput(conn);
                 while ((notify = PQnotifies(conn)) != NULL) {
-                        fprintf(stderr, "%s's NOTIFY reserved from PID %d:%s\n", notify->relname, notify->be_pid, notify-$                        PQfreemem(notify);
+                        fprintf(stderr, "%s's NOTIFY reserved from PID %d:%s\n", notify->relname, notify->be_pid, notify->extra);
+			PQfreemem(notify);
                         PQconsumeInput(conn);
                 }
         }
